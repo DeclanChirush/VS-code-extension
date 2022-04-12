@@ -176,6 +176,7 @@ const vscode = __webpack_require__(1);
 const getNonce_1 = __webpack_require__(3);
 //import {microphoneWave} from "./microphoneWave";
 //import { getTrans } from "./getTrans";
+const appModel_1 = __webpack_require__(5);
 class SidebarProvider {
     constructor(_extensionUri) {
         this._extensionUri = _extensionUri;
@@ -202,6 +203,24 @@ class SidebarProvider {
                         return;
                     }
                     vscode.window.showErrorMessage(data.value);
+                    break;
+                }
+                case "createFile": {
+                    if (!data.value) {
+                        return;
+                    }
+                    vscode.window.showInformationMessage(data.msg);
+                    const appModel = new appModel_1.AppModel();
+                    appModel.createFileOrFolder("file", data.value);
+                    break;
+                }
+                case "createFolder": {
+                    if (!data.value) {
+                        return;
+                    }
+                    vscode.window.showInformationMessage(data.msg);
+                    const appModel = new appModel_1.AppModel();
+                    appModel.createFileOrFolder("folder", data.value);
                     break;
                 }
             }
@@ -253,7 +272,10 @@ class SidebarProvider {
         
             <link href="${styleTextFieldUri}" rel="stylesheet">
             <link href="${stylesMicrophoneUri}" rel="stylesheet">
-    
+
+          <script nonce="${nonce}">
+            const tsvscode = acquireVsCodeApi();
+          </script>      
 	    </head>
         <body>
         <script nonce="${nonce}" src="${scriptUri}"></script>
@@ -300,10 +322,10 @@ class AppModel {
                 paths[0] = taskType === 'file' ? path.basename(paths[0]) : '/';
                 targetpath = path.join(basepath, targetpath);
                 paths = paths.map(e => path.join(targetpath, e));
-                if (taskType === 'file')
-                    this.makefiles(paths);
-                else
+                if (taskType === 'folder')
                     this.makefolders(paths);
+                else
+                    this.makefiles(paths);
                 vscode.window.showInformationMessage("Succssfully created!");
                 setTimeout(() => {
                     if (taskType === 'file') {
@@ -324,6 +346,33 @@ class AppModel {
                 vscode.window.showErrorMessage("Somthing went wrong!");
             }
         });
+        // try {
+        //     let paths = relativePath;
+        //     console.log("File Creator class -- "+ paths)
+        //     let targetpath = taskType === 'file' ? path.dirname(paths[0]) : paths[0];
+        //     paths[0] = taskType === 'file' ? path.basename(paths[0]) : '/';
+        //     targetpath = path.join(basepath, targetpath);
+        //     paths = path.join(targetpath);
+        //     if (taskType === 'file')
+        //         this.makefiles(paths);
+        //     else
+        //         this.makefolders(paths);
+        //         vscode.window.showInformationMessage("Succssfully created!")
+        //     setTimeout(() => { //tiny delay
+        //         if (taskType === 'file') {
+        //             let openPath = paths.find((path: fs.PathLike) => fs.lstatSync(path).isFile())
+        //             if (!openPath) return;
+        //             vscode.workspace.openTextDocument(openPath)
+        //                 .then((editor) => {
+        //                     if (!editor) return;
+        //                     vscode.window.showTextDocument(editor);
+        //                 });
+        //         }
+        //     }, 50);
+        // } catch (error) {
+        //     this.logError(error);
+        //     vscode.window.showErrorMessage("Somthing went wrong!");
+        // }
     }
     makefiles(filepaths) {
         filepaths.forEach(filepath => this.makeFileSync(filepath));

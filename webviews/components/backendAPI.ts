@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { AdaptorFileCreator } from './adaptorFileCreator';
 
 export async function getData() {
 
@@ -23,19 +22,17 @@ type GetDataResponse = {
       },
     );
 
-  //  let URI = "Users/hirush/desktop/hospital/hospital/MainClass.java";
-  //  const adapter = new AdaptorFileCreator(URI);
     console.log(JSON.stringify(data, null, 4));
 
     //response status is: 200
-    console.log('response status is: ', status);
+    console.log('Response status is: ', status);
 
     return data;
 
   } catch (error) {
 
     if (axios.isAxiosError(error)) {
-      console.log('error message: ', error.message);
+      console.log('Error message: ', error.message);
       return error.message;
 
     } else {

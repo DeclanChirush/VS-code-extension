@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import { getNonce } from "./getNonce";
 //import {microphoneWave} from "./microphoneWave";
 //import { getTrans } from "./getTrans";
+import {AppModel} from "./codeManipulation/appModel";
 
 
 export class SidebarProvider implements vscode.WebviewViewProvider {
@@ -36,6 +37,28 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
             return;
           }
           vscode.window.showErrorMessage(data.value);
+          break;
+        }
+        case "createFile": {
+          if (!data.value) {
+            return;
+          }
+          vscode.window.showInformationMessage(data.msg);
+
+          const appModel = new AppModel()
+          appModel.createFileOrFolder("file",data.value);
+    
+          break;
+        }
+        case "createFolder": {
+          if (!data.value) {
+            return;
+          }
+          vscode.window.showInformationMessage(data.msg);
+
+          const appModel = new AppModel()
+          appModel.createFileOrFolder("folder",data.value);
+    
           break;
         }
       }
@@ -112,7 +135,10 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
         
             <link href="${styleTextFieldUri}" rel="stylesheet">
             <link href="${stylesMicrophoneUri}" rel="stylesheet">
-    
+
+          <script nonce="${nonce}">
+            const tsvscode = acquireVsCodeApi();
+          </script>      
 	    </head>
         <body>
         <script nonce="${nonce}" src="${scriptUri}"></script>

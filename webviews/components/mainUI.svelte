@@ -1,13 +1,9 @@
 
 <script>
-//import axios from 'axios';
-//import {AdaptorFileCreator} from "./adaptorFileCreator";
 import {getData} from "./backendAPI";
 
 let trans = "";
-let suggest = "";
 let filePath ="";
-//const adaptor = AdaptorFileCreator()
 
 function microphoneOnAndOff(e) {
 
@@ -21,23 +17,38 @@ function microphoneOnAndOff(e) {
 
   ;(async () => {
     try {
-      // const response = await axios.get('http://localhost:8080/begin-pipeline');
-      const response = await getData();
-      console.log(response.transcription);
+      
+      // //Get the data from standalone server
+      // const response = await getData();
+      // console.log(response.transcription);
 
-      // filePath = response.data.code_modification[0].file
+      // //Grab the file path
+      // filePath = response.code_modification[0].file
 
-      // var finalFilePath = filePath.replace(/\\/g, "/");
+      // //Split the file path as required
+      // //var finalFilePath = filePath.replace(/\\/g, "/");
+      // console.log("Correct file path - " + finalFilePath);
 
-      //console.log("Correct file path - " + finalFilePath);
 
-     //adaptor.createFolderUsingAdapter(finalFilePath);
+      var finalFilePath = "/Models/Car.java"
 
+      var sampleFileType = "file"
+
+      //Create file or folder
+      if(sampleFileType == "folder"){
+        tsvscode.postMessage({ type: "createFolder",value: finalFilePath,msg:"Do you want to create this folder? Please press enter!" });
+      }else{
+        tsvscode.postMessage({ type: "createFile",value: finalFilePath, msg:"Do you want to create this file? Please press enter!"});
+      }
+
+      //Set trancription data 
       trans = response.transcription;
+
     } catch (error) {
       console.error(error);
     }
   })()
+
 }
 </script>
 <div class="box">

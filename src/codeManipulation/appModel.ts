@@ -14,7 +14,7 @@ export class AppModel {
         if(vscode.workspace.workspaceFolders){
             projectRoot = vscode.workspace.workspaceFolders[0].uri.fsPath;
         }
-        
+
         if (path.resolve(relativePath) === relativePath)
             relativePath = relativePath.substring(projectRoot.length).replace(/\\/g, "/");
 
@@ -35,12 +35,11 @@ export class AppModel {
                 targetpath = path.join(basepath, targetpath);
                 paths = paths.map(e => path.join(targetpath, e));
 
-                if (taskType === 'file')
-                    this.makefiles(paths);
-                else
+                if (taskType === 'folder')
                     this.makefolders(paths);
+                else
+                    this.makefiles(paths);
                     vscode.window.showInformationMessage("Succssfully created!")
-
 
 
                 setTimeout(() => { //tiny delay
@@ -60,6 +59,37 @@ export class AppModel {
             }
 
         });
+
+        // try {
+        //     let paths = relativePath;
+        //     console.log("File Creator class -- "+ paths)
+        //     let targetpath = taskType === 'file' ? path.dirname(paths[0]) : paths[0];
+        //     paths[0] = taskType === 'file' ? path.basename(paths[0]) : '/';
+        //     targetpath = path.join(basepath, targetpath);
+        //     paths = path.join(targetpath);
+
+        //     if (taskType === 'file')
+        //         this.makefiles(paths);
+        //     else
+        //         this.makefolders(paths);
+        //         vscode.window.showInformationMessage("Succssfully created!")
+
+
+        //     setTimeout(() => { //tiny delay
+        //         if (taskType === 'file') {
+        //             let openPath = paths.find((path: fs.PathLike) => fs.lstatSync(path).isFile())
+        //             if (!openPath) return;
+        //             vscode.workspace.openTextDocument(openPath)
+        //                 .then((editor) => {
+        //                     if (!editor) return;
+        //                     vscode.window.showTextDocument(editor);
+        //                 });
+        //         }
+        //     }, 50);
+        // } catch (error) {
+        //     this.logError(error);
+        //     vscode.window.showErrorMessage("Somthing went wrong!");
+        // }
 
         
     }
