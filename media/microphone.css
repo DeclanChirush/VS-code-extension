@@ -1,0 +1,91 @@
+body {
+	background: #222032;
+}
+
+.box {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  /* right: 25%; */
+}
+.object {
+  display: flex;
+	flex: 0 1 100%;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
+}
+
+.outline {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 8px solid #B5A4A4;
+  animation: pulse 3s;
+	animation-timing-function: ease-out;
+	animation-iteration-count: infinite;
+	position: absolute;
+}
+
+.buttonStyle {
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+	background: #50CDDD;
+	box-shadow: 0px 0px 80px #0084F9;
+	position: absolute;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+		border: 65px solid #0B3082;
+  }
+  50% {
+		border: solid #A3FFC2;		
+		opacity: 0.8;
+  }
+	
+	 90% {
+    transform: scale(3.2);
+		opacity: 0.2;
+		border: 3px solid #2E3CFF;
+  }
+  100% {
+    transform: scale(3.3);
+		opacity: 0;
+		border: 1px solid #7A89FF;
+  }
+}
+
+#delayed {
+	animation-delay: 1.5s;
+}
+
+ /*.btn-hover.color-2 {
+    background-image: linear-gradient(to right, #f5ce62, #e43603, #6f6dfc, #e85a19);
+    box-shadow: 0 4px 15px 0 rgba(229, 66, 10, 0.75);
+} */
+
+.buttonStyle:hover{
+	background-color: #020b5c;
+}
+
+#circlein {
+	width: 75px;
+	height: 75px;
+	border-radius: 50%;
+	background: #6BD6E1;
+	box-shadow: 0px -2px 15px #E0FF94;
+	position: absolute;
+}
+.outline-hide{
+	display: none;
+}
+
+.mic-icon {
+	height: 35px;
+	position: absolute;
+	margin: 21px;
+}

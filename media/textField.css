@@ -1,0 +1,87 @@
+/* * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+} */
+
+
+
+.button1 {
+    text-align: center;
+    display: flex;
+	flex: 0 1 100%;
+    justify-content: center;
+    align-items: center;
+    align-content: stretch;
+    margin-top: 30%;
+}
+
+.button2 {
+    text-align: center;
+    display: flex;
+	flex: 0 1 100%;
+    justify-content: center;
+    align-items: center;
+    align-content: stretch; 
+    margin-top: -10%; 
+}
+.button3 {
+    text-align: center;
+    display: flex;
+	flex: 0 1 100%;
+    justify-content: center;
+    align-items: center;
+    align-content: stretch; 
+    margin-top: -10%; 
+}
+.btn-hover {
+    width: 200px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 40px;
+    text-align:center;
+    border: none;
+    background-size: 250% 100%;
+
+    border-radius: 7px;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+    background-position: 100% 0;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+    outline: none;
+}
+
+.btn-hover.color-9 {
+    height: 55px;
+    background-image: linear-gradient(to right, #1f79a0, #2153aa);
+    box-shadow: 0 4px 15px 0 rgba(34, 75, 136, 0.75);
+}
+
+.btn-hover.color-10 {
+    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+    opacity: 0.5;
+}
+
+.btn-hover.color-11 {
+    height: 30px;
+    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+    opacity: 0.3;
+}
+
+
+
+
